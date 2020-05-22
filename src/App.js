@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+ 
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = { count: 0 };
+
+    }
+
+    increment() {
+        this.setState({ count: this.state.count += 1 })
+    }
+
+    decrement() {
+        this.setState({ count: this.state.count -= 1 })
+    }
+
+
+    render() {
+
+
+        return (
+
+            <div>
+                <h3>Simple {this.props.name}!</h3>
+                <h5>{this.props.text}</h5>
+
+                <div>count:{this.state.count}</div>
+               
+                <button onClick={this.decrement.bind(this)}>-</button>
+                <button onClick={this.increment.bind(this)}>+</button>
+
+            </div>
+
+        );
+    }
 }
+
+App.defaultProps = {
+    name: "Counter",
+    text: "Click the + to increment the count and - to decrement the count."
+}
+
 
 export default App;
